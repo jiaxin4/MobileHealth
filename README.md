@@ -1,20 +1,25 @@
 # Code for paper "Estimating time-varying causal excursion effect in mobile health with binary outcomes"
 
-Code to reproduce results in the paper [Estimating time-varying causal excursion effect in mobile health with binary outcomes
-](https://academic.oup.com/biomet/advance-article/doi/10.1093/biomet/asaa070/5901535) (Biometrika, 2021) by Tianchen Qian, Hyesun Yoo, Predrag Klasnja, Daniel Almirall, Susan A. Murphy
+Code to reproduce results in the paper [Modeling Time-Varying Effects of Mobile
+Health Interventions Using Longitudinal
+Functional Data from HeartSteps
+Micro-Randomized Trial] by Jiaxin Yu and Tianchen Qian.
 
-Tianchen Qian
-2020.09.21
+Jiaxin Yu
+2024.03.12
 
 
 A detailed guide on how to reproduce the results in the paper is in Section 2. Section 1 explains the code structure (useful if you would like to use the code for your own purpose).
 
-Please ignore [filename_mapping.txt](filename_mapping.txt). This file is used for my own reference, as the filenames are different on my local computer.
-
-
 ## 1. Code Structure
 
 In file name alphabetical order:
+
+* []
+
+
+
+
 
 * [barifit_analysis.R](barifit_analysis.R): Code to load, pre-process, and conduct analysis of the BariFit data. This code is used to generate results in Section 7 and Appendix H of the paper. One would need access to BariFit data including the following in order to run the code.
     * Bari-Fit data/barifit_csv_files/MRT_activity_suggestion_data.csv
