@@ -1,4 +1,4 @@
-# Code for paper "Estimating time-varying causal excursion effect in mobile health with binary outcomes"
+# Code for paper "Modeling Time-Varying Effects of Mobile Health Interventions Using Longitudinal Functional Data from HeartSteps Micro-Randomized Trial"
 
 Code to reproduce results in the paper [Modeling Time-Varying Effects of Mobile
 Health Interventions Using Longitudinal
@@ -9,15 +9,27 @@ Jiaxin Yu
 2024.03.12
 
 
-A detailed guide on how to reproduce the results in the paper is in Section 2. Section 1 explains the code structure (useful if you would like to use the code for your own purpose).
+Section 1 explains the code structure and provides a detailed guide on how to reproduce the results in the paper
 
 ## 1. Code Structure
 
-In file name alphabetical order:
+### Data Analysis of HeartSteps 
 
-* []
+* [HeartSteps_Preprocessing]: Code to load, pre-process the HeartSteps data. One can access the publicly available HeartSteps data at https://github.com/klasnja/HeartStepsV1.
 
+* [HeartSteps_ExploratoryPlots]: Code to generate exploratory plots presented in Section ? of the paper.
 
+* [HeartSteps_MarginalAnalysis]: 
+
+### Simulations
+
+* [simulation_function.R]:
+
+* [simulation_plots.R]:
+
+* [simulation_complex_setting.R]:
+  
+* [simulation_simple_setting]:
 
 
 
