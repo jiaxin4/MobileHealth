@@ -15,53 +15,30 @@ Section 1 explains the code structure and provides a detailed guide on how to re
 
 ### Data Analysis of HeartSteps 
 
-* [HeartSteps_Preprocessing]: Code to load, pre-process the HeartSteps data. One can access the publicly available HeartSteps data at https://github.com/klasnja/HeartStepsV1.
+* [HeartSteps_Preprocessing.R]: Code to load, pre-process the HeartSteps data. One can access the publicly available HeartSteps data at https://github.com/klasnja/HeartStepsV1.
 
-* [HeartSteps_ExploratoryPlots]: Code to generate exploratory plots presented in Section ? of the paper.
+* [HeartSteps_ExploratoryPlots.R]: Code to generate exploratory plots presented in Section ? of the paper.
 
-* [HeartSteps_MarginalAnalysis]: 
+* [HeartSteps_MarginalAnalysis.R]: Code to conduct marginal analysis of the HeartSteps data.
+
+* [HeartSteps_ModeratorAnalysis.R]: Code to conduct moderator analysis of the HeartSteps data.
+
+* [HeartSteps_WCLS.R]: Code to run weighted and centered least square.
 
 ### Simulations
 
-* [simulation_function.R]:
+* [simulation_function.R]: contains functions including data generating process and cross-validation, that are necessary to run the simulations.
 
-* [simulation_plots.R]:
-
-* [simulation_complex_setting.R]:
+* [simulation_complex_setting.R]: conduct simulations under complex generative model and evaluate the performance of the estimators.
   
-* [simulation_simple_setting]:
+* [simulation_simple_setting]: conduct simulations under simple generative model and evaluate the performance of the estimators.
 
-
-
-* [barifit_analysis.R](barifit_analysis.R): Code to load, pre-process, and conduct analysis of the BariFit data. This code is used to generate results in Section 7 and Appendix H of the paper. One would need access to BariFit data including the following in order to run the code.
-    * Bari-Fit data/barifit_csv_files/MRT_activity_suggestion_data.csv
-    * Bari-Fit data/barifit_csv_files/barifit_demog_EMR.csv
-    * Bari-Fit data/barifit_csv_files/barifit_weight_EMR.csv
-    * Bari-Fit data/barifit_csv_files/food_track_analysis_data_correct.csv
-    
-* [dgm_binary_ar1_covariate.R](dgm_binary_ar1_covariate.R): a generative model for MRT data, where the time-varying covariate follows an AR(1) process. This function is *not* used in the simulations presented in the final paper.
-
-* [dgm_binary_categorical_covariate.R](dgm_binary_categorical_covariate.R): a generative model for MRT data, where the time-varying covariate is categorical. This function is used in the simulations presented in the paper.
-
-* [estimators_robust_adhocery.R](estimators_robust_adhocery.R): an early version of the EMEE estimator ("binary_outcome_moderated_effect()"). This function is *not* used in the final paper. Because the simulation code sources this file, I included this file here.
-
-* [estimators.R](estimators.R): the main file that contains implementation of all estimators in the paper. A few notables ones are:
-    * efficient_ee(): the original ECE estimator (Section 4 of the paper)
-    * efficient_ee_twostep(): the ECE estimator with an alternative two-step implementation (Appendix G of the paper)
-    * efficient_ee_modified_weight(): the ECE estimator with truncated weight (Section 6.1 of the paper, see Equation (12) for the form of weight truncation). This estimator is the ECE estimator used in the simulation in Section 6 of the paper.
-    * weighted_centered_least_square(): the EMEE estimator (Section 5 of the paper)
-    * The rest functions in [estimators.R](estimators.R) were used for exploratory purposes and are now obsolete.
-
-* [simulation_consistency.R](simulation_consistency.R): code for reproducing the simulation results on consistency in Section 6.2 of the paper
-
-* [simulation_efficiency_appendix.R](simulation_efficiency_appendix.R): code for reproducing the additional simulation results on efficiency in Appendix F of the paper
-
-* [simulation_efficiency.R](simulation_efficiency.R): code for reproducing the simulation results on efficiency in Section 6.3 of the paper
+* [simulation_plots.R]: generate plots that display consistency and asymptotic results.
 
 
 ## 2. Results in Paper and Corresponding Code
 
-### Simulation on consistency (Section 6.2 in paper) 
+### Simulation on consistency (Section ? in paper) 
 
 Code is [simulation_consistency.R](simulation_consistency.R)
 
