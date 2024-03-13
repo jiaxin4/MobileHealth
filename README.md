@@ -21,7 +21,7 @@ Section 1 explains the code structure and provides a detailed guide on how to re
 
 * [HeartSteps_ModeratorAnalysis.R]: Code to conduct moderator analysis of the HeartSteps data.
 
-* [HeartSteps_WCLS.R]: Code to run weighted and centered least square.
+* [HeartSteps_WCLS.R]: Code to run weighted and centered least square (for aggregate outcome).
 
 * [simulation_function.R]: contains functions including data generating process and cross-validation, that are necessary to run the simulations.
 
@@ -58,7 +58,8 @@ Code is [HeartSteps_ModeratorAnalysis.R](HeartSteps_ModeratorAnalysis.R). The co
 
 Code is [HeartSteps_WCLS.R](HeartSteps_WCLS.R).
 
+<!---
 #### Sensitivity Analysis (Section 7.4 in paper)
 
 Code is []()???? gfsteps is not available.
-
+-->
