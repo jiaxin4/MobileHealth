@@ -13,7 +13,7 @@ Section 1 explains the code structure and provides a detailed guide on how to re
 
 ## 1. Code Structure
 
-* [HeartSteps_Preprocessing.R]: Code to load, pre-process the HeartSteps data. One can access the publicly available HeartSteps data at https://github.com/klasnja/HeartStepsV1.
+* [HeartSteps_Preprocessing.R]: Code to load and pre-process the HeartSteps data in preparation for later analysis. One can access the publicly available HeartSteps data at https://github.com/klasnja/HeartStepsV1.
 
 * [HeartSteps_ExploratoryPlots.R]: Code to generate exploratory plots presented in Section ? of the paper.
 
@@ -34,20 +34,31 @@ Section 1 explains the code structure and provides a detailed guide on how to re
 
 ## 2. Results in Paper and Corresponding Code
 
-### Simulations
+### 2.1 Simulations
 
 #### Consistency and Asymptotic Normality (Section ? in paper) 
 
 Code is [simulation_complex_setting.R](simulation_complex_setting.R) for complex generating functions and [simulation_simple_setting.R](simulation_simple_setting.R) for simple generating functions.
 
-### Data Analysis of HeartSteps 
-
-#### Marignal Analysis (Section ? in paper)
-
-#### Moderator Analysis (Section ? in paper)
-
-#### Aggregate Outcome Analysis (Section ? in paper)
+### 2.2 Data Analysis of HeartSteps 
 
 #### Exploratory plots
 
-Code is [barifit_analysis.R](barifit_analysis.R). 
+Code is [HeartSteps_ExploratoryPlots.R](HeartSteps_ExploratoryPlots.R). 
+
+#### Marignal Analysis (Section ? in paper)
+
+Code is [HeartSteps_MarginalAnalysis.R](HeartSteps_MarginalAnalysis.R).
+
+#### Moderator Analysis (Section ? in paper)
+
+Code is [HeartSteps_ModeratorAnalysis.R](HeartSteps_ModeratorAnalysis.R). The code is written for analysis with "location" moderator. Other moderator analysis with "weekday/weekend" or "sendentary" can be easily reproduced by changing few lines of the code.
+
+#### Aggregate Outcome Analysis (Section ? in paper)
+
+Code is [HeartSteps_WCLS.R](HeartSteps_WCLS.R).
+
+#### Sensitivity Analysis
+
+Code is []()
+
