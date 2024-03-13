@@ -31,7 +31,7 @@ Section 1 explains the code structure and provides a detailed guide on how to re
 
 * [simulation_complex_setting.R]: conduct simulations under complex generative model and evaluate the performance of the estimators.
   
-* [simulation_simple_setting]: conduct simulations under simple generative model and evaluate the performance of the estimators.
+* [simulation_simple_setting.R]: conduct simulations under simple generative model and evaluate the performance of the estimators.
 
 * [simulation_plots.R]: generate plots that display consistency and asymptotic results.
 
@@ -40,7 +40,7 @@ Section 1 explains the code structure and provides a detailed guide on how to re
 
 ### Simulation on consistency (Section ? in paper) 
 
-Code is [simulation_consistency.R](simulation_consistency.R)
+Code is [simulation_complex_setting.R](simulation_complex_setting.R) and [simulation_simple_setting.R](simulation_simple_setting.R)
 
 ### Simulation on efficiency (Section 6.3 in paper)
 
