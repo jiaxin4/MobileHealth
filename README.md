@@ -36,7 +36,7 @@ Section 1 explains the code structure and provides a detailed guide on how to re
 
 ### 2.1 Simulations
 
-#### Consistency and Asymptotic Normality (Section ? in paper) 
+#### Consistency and Asymptotic Normality (Section 6 in paper) 
 
 Code is [simulation_complex_setting.R](simulation_complex_setting.R) for complex generating functions and [simulation_simple_setting.R](simulation_simple_setting.R) for simple generating functions.
 
@@ -46,19 +46,19 @@ Code is [simulation_complex_setting.R](simulation_complex_setting.R) for complex
 
 Code is [HeartSteps_ExploratoryPlots.R](HeartSteps_ExploratoryPlots.R). 
 
-#### Marignal Analysis (Section ? in paper)
+#### Marignal Analysis (Section 7.1 in paper)
 
 Code is [HeartSteps_MarginalAnalysis.R](HeartSteps_MarginalAnalysis.R).
 
-#### Moderator Analysis (Section ? in paper)
+#### Moderator Analysis (Section 7.2 in paper)
 
 Code is [HeartSteps_ModeratorAnalysis.R](HeartSteps_ModeratorAnalysis.R). The code is written for analysis with "location" moderator. Other moderator analysis with "weekday/weekend" or "sendentary" can be easily reproduced by changing few lines of the code.
 
-#### Aggregate Outcome Analysis (Section ? in paper)
+#### Aggregate Outcome Analysis (Section 7.3 in paper)
 
 Code is [HeartSteps_WCLS.R](HeartSteps_WCLS.R).
 
-#### Sensitivity Analysis
+#### Sensitivity Analysis (Section 7.4 in paper)
 
-Code is []()
+Code is []()???? gfsteps is not available.
 
