@@ -9,7 +9,7 @@ Jiaxin Yu
 2024.03.12
 
 
-Section 1 explains the code structure and provides a detailed guide on how to reproduce the results in the paper
+Section 1 explains the code structure and Section 2 provides a detailed guide on how to reproduce the results in the paper
 
 ## 1. Code Structure
 
