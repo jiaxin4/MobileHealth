@@ -342,7 +342,7 @@ CVdf_calculation <- function(dat, df1, df2, df3, i_total, j_total, t_total, pa){
 # for each simulation, calculate the cross-validation knots --------------------------------------------------------
 eachsim_CVdf <- function(dta, i_total, j_total, t_total, pa = 0.4){
   # select df1 --------------------------------------------------------------
-  df_given <- 7:18
+  df_given <- 3:10
   df_design <- expand.grid(df1 = df_given, df2 = 10, df3 = 10)
   cv_collector <- c()
   for (iter in 1:dim(df_design)[1]){

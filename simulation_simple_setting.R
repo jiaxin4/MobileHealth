@@ -1,6 +1,11 @@
+# Note for reproducibility:
+# To produce simulation study in the paper, we used a high performance cluster with multiple nodes and approximately 
+# 200 core hours for 1000 simulations. 
+
+
 #simulation
 rm(list = ls())
-source("sim_function_CV.R")
+source("simulation_function.R")
 library(utils)
 library(tidyverse)
 library(splines)
@@ -8,14 +13,11 @@ library(MASS)
 library(mgcv)
 
 i_total_list <- c(20, 50, 100)
-nSeed <- 1
-nsim <- 1000
+nSeed <- 1 # We used 10 nodes at the same time and each node run 100 simulations, so the seed for each node is different. 
+nsim <- 1000 #In our actual simulation, we run 1000 simulations in cluster.
 j_total = 30
 t_total = 20
 
-#Testing combinations of f_hat
-j.spec.vec <- c(2,15,30)
-t.spec.vec <- c(2,10,20)
 
 gen_formul <- "A*(alpha0_true + f1 + f2 + z1*f3) + 0.35 + f1 + f2 + z1*g1 + g2*z3"
 
@@ -197,92 +199,12 @@ for (i_total in i_total_list){
                                   var_fhat = diag(asycov_beta_corrected)[(j_total + t_total + 2):(j_total + 2*t_total+1)], 
                                   var_fstar = diag(cov_beta_star)[(j_total + t_total + 2):(j_total + 2*t_total+1)])
     
-    #evaluate combinations of f's
-    asym_invmid <- gamma_tilde_1_inv %*% var_mid_method2 %*% gamma_tilde_1_inv
-    fcombj_in <- list()
-    fcomb_MISE <- c()
-    for (index in 1:length(j.spec.vec)){
-      j.spec <- j.spec.vec[index]
-      bs_spec <- cbind(0, matrix(rep(bs.j.f1[j.spec,], each = t_total), ncol = df1_given), 
-                       bs.t.f2, 
-                       bs.t.f3)
-      fcomb_est <-  bs_spec %*% gamma_hat
-      fcomb <-  f1[j.spec] + f2 + f3
-      
-      test <- f1_hat[j.spec] + f2_hat + f3_hat
-      (max(abs(test - fcomb_est)) < 10^-13)
-      
-      var_fcomb <- diag(bs_spec%*%asym_invmid%*%t(bs_spec))
-      fcombj_in[[index]] <- cp_general(fin = fcomb, f_est = fcomb_est, var_f_ci = var_fcomb)
-      
-      #MISE
-      fcomb_MISE <- c(fcomb_MISE, sum(abs(fcomb-fcomb_est)))
-    }
-    for (index in 1:length(j.spec.vec)){
-      j.spec <- j.spec.vec[index]
-      bs_spec <- cbind(0, matrix(rep(bs.j.f1[j.spec,], each = t_total), ncol = df1_given), 
-                       bs.t.f2, 
-                       0*bs.t.f3)
-      fcomb_est <-  bs_spec %*% gamma_hat
-      fcomb <-  f1[j.spec] + f2 + 0*f3
-      
-      test <- f1_hat[j.spec] + f2_hat + 0*f3_hat
-      (max(abs(test - fcomb_est)) < 10^-13)
-      
-      var_fcomb <- diag(bs_spec%*%asym_invmid%*%t(bs_spec))
-      fcombj_in[[index+length(j.spec.vec)]] <- cp_general(fin = fcomb, f_est = fcomb_est, var_f_ci = var_fcomb)
-      
-      #MISE
-      fcomb_MISE <- c(fcomb_MISE, sum(abs(fcomb-fcomb_est)))
-    }
-    names(fcombj_in) <- c(paste("Z1 = 1, at j = ", j.spec.vec, sep = ""),
-                          paste("Z1 = 0, at j = ", j.spec.vec, sep = ""))
-    
-    fcombt_in <- list()
-    for (index in 1:length(t.spec.vec)){
-      t.spec <- t.spec.vec[index]
-      bs_spec <- cbind(0, bs.j.f1,
-                       matrix(rep(bs.t.f2[t.spec,], each = j_total), nrow = j_total), 
-                       matrix(rep(bs.t.f3[t.spec,], each = j_total), nrow = j_total))
-      fcomb_est <-  bs_spec %*% gamma_hat
-      fcomb <-  f1 + f2[t.spec] + f3[t.spec]
-      
-      test <- f1_hat + f2_hat[t.spec] + f3_hat[t.spec]
-      (max(abs(test - fcomb_est)) < 10^-13)
-      
-      var_fcomb <- diag(bs_spec%*%asym_invmid%*%t(bs_spec))
-      fcombt_in[[index]] <- cp_general(fin = fcomb, f_est = fcomb_est, var_f_ci = var_fcomb)
-      
-      #MISE
-      fcomb_MISE <- c(fcomb_MISE, sum(abs(fcomb-fcomb_est)))
-    }
-    for (index in 1:length(t.spec.vec)){
-      t.spec <- t.spec.vec[index]
-      bs_spec <- cbind(0, bs.j.f1,
-                       matrix(rep(bs.t.f2[t.spec,], each = j_total), nrow = j_total), 
-                       matrix(0, ncol = df3_given, nrow = j_total))
-      fcomb_est <-  bs_spec %*% gamma_hat
-      fcomb <-  f1 + f2[t.spec] + 0
-      
-      test <- f1_hat + f2_hat[t.spec] + 0
-      (max(abs(test - fcomb_est)) < 10^-13)
-      
-      var_fcomb <- diag(bs_spec%*%asym_invmid%*%t(bs_spec))
-      fcombt_in[[index+length(t.spec.vec)]] <- cp_general(fin = fcomb, f_est = fcomb_est, var_f_ci = var_fcomb)
-      
-      #MISE
-      fcomb_MISE <- c(fcomb_MISE, sum(abs(fcomb-fcomb_est)))
-    }
-    names(fcombt_in) <- c(paste("Z1 = 1, at t = " , t.spec.vec, sep = ""),
-                          paste("Z1 = 0, at t = " , t.spec.vec, sep = ""))
-    fcomb_in <- append(fcombj_in, fcombt_in)
-    
     # Collect all results
     setting <- list(setting = data.frame(i_total = i_total, j_total = j_total, t_total = t_total, 
                                          df1 = df1_given, df2 = df2_given, df3 = df3_given), 
                     gen_formul = gen_formul, fresult_length = length(f3_result),
                     est_equ = est_equ)
-    result <- append(append(append(append(append(f1_result, f2_result), f3_result), setting),fcomb_in), list(fcomb_MISE))
+    result <- c(f1_result, f2_result, f3_result, setting)
     
     #alpha0_hat result
     alpha0_var <- asycov_beta_corrected[1]
@@ -298,3 +220,41 @@ for (i_total in i_total_list){
   saveRDS(result_all, paste0("simresult_", i_total, "_", nSeed, ".RDS"))
 
 }
+
+# Summary results ---------------------------------------------------------
+simu_design <- data.frame(i_total = c(20, 50, 100),
+                          j_total = 30,
+                          t_total = 20)
+seedlist <- list(1, 1, 1)
+
+result_collected <- c()
+for (i_design in 1:dim(simu_design)[1]){
+  i_total <- simu_design[i_design,]$i_total
+  seedlist.i <- seedlist[[i_design]]
+  result_all <- c()
+  for (iSeed in seedlist.i){
+    nSeed <- iSeed
+    result <- readRDS(paste0("simresult_", i_total, "_", nSeed, ".RDS"))
+    result_all <- append(result_all, result)
+  }
+  print(length(result_all))
+  fresult_length <- result_all[[1]]$fresult_length
+  t_vec_eval <- seq(0.01,0.99,length = result_all[[1]]$setting$t_total)
+  j_vec_eval <- seq(0.01,0.99,length = result_all[[1]]$setting$j_total)
+  f1_output <- output_organize(result_all = result_all, start_index = 1, vec_eval = j_vec_eval)
+  f2_output <- output_organize(result_all = result_all, start_index = fresult_length+1, vec_eval = t_vec_eval)
+  f3_output <- output_organize(result_all = result_all, start_index = 2*fresult_length+1, vec_eval = t_vec_eval)
+  max_est_equ <- sapply(result_all, "[[", "est_equ")
+  df_all <- sapply(result_all, "[[", "setting")
+  
+  ###
+  alpha0_hat <- sapply(result_all, "[[", "alpha0_hat") 
+  alpha0_mse <- mean((alpha0_hat - 0.7)^2)
+  alpha0_in <- sapply(result_all, "[[", "alpha0_in") 
+  alpha0_cp <- mean(alpha0_in)
+  alpha0_result <- c(alpha0_mse, alpha0_cp)
+  
+  result_collected[[i_design]] <- list(f1_output, f2_output, f3_output, max_est_equ, df_all, alpha0_result)
+}
+
+saveRDS(result_collected, file = "result_collected.RDS")
