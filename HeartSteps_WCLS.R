@@ -4,7 +4,6 @@ library(tidyverse)
 library(gridExtra)
 library(ggpubr)
 library(geepack)
-source("xgeepack.R")
 
 dta = readRDS("jbslot_public_60min.RDS")
 

@@ -1,3 +1,10 @@
+# Note for reproducibility:
+# To reproduce the data analysis results in the paper, please run the HeartSteps_Preprocessing.R first to get the data in 
+# the form for analysis. To run the entire analysis (with cross-validation), we used a high performance cluster with multiple nodes and around
+# approximately 70 core hours.
+
+
+
 # functions needed --------------------------------------------------------
 inCI <- function(x, upr, lwr) {
   all(x >= lwr & x <= upr)
@@ -115,7 +122,6 @@ CVdf_calculation <- function(dat, df1w, df2w, df1an, df2an, i_total, j_total_max
 
 
 # Select number of knots using K-fold cross validation--------------------------------------------------------
-rm(list = ls())
 dta = readRDS("jbslot_public_60min.RDS")
 library(tidyverse)
 library(splines)

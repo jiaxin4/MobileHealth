@@ -1,3 +1,9 @@
+# Note for reproducibility:
+# To reproduce the data analysis results in the paper, please run the HeartSteps_Preprocessing.R first to get the data in 
+# the form for analysis. To run the entire analysis (with cross-validation), we used a high performance cluster with multiple nodes and around
+# approximately 70 core hours.
+
+
 # functions needed --------------------------------------------------------
 inCI <- function(x, upr, lwr) {
   all(x >= lwr & x <= upr)
@@ -134,6 +140,13 @@ CVdf_calculation <- function(dat, df1w, df2w, df3w, df4w, df1an, df2an, df3an, d
 
 
 # Select number of knots --------------------------------------------------------
+library(tidyverse)
+library(splines)
+library(MASS)
+require(lattice)
+library(gridExtra)
+library(mgcv)
+
 dta = readRDS("jbslot_public_60min.RDS")
 dta$send.fac <- as.factor(ifelse(dta$send == TRUE, 1, 0))
 dta$send.num <- as.numeric(ifelse(dta$send == TRUE, 1, 0))
