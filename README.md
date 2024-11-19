@@ -15,7 +15,7 @@ Section 1 explains the code structure and Section 2 provides a detailed guide on
 
 * [HeartSteps_Preprocessing.R]: Code to load and pre-process the HeartSteps data in preparation for later analysis. One can access the publicly available HeartSteps data at https://github.com/klasnja/HeartStepsV1.
 
-* [HeartSteps_ExploratoryPlots.R]: Code to generate exploratory plots presented in Section ? of the paper.
+* [HeartSteps_ExploratoryPlots.R]: Code to generate exploratory plots presented in the paper.
 
 * [HeartSteps_MarginalAnalysis.R]: Code to conduct marginal analysis of the HeartSteps data.
 
