@@ -6,7 +6,7 @@ Functional Data from HeartSteps
 Micro-Randomized Trial] by Jiaxin Yu and Tianchen Qian.
 
 Jiaxin Yu
-2024.03.12
+2025.03.12
 
 
 Section 1 explains the code structure and Section 2 provides a detailed guide on how to reproduce the results in the paper
@@ -28,8 +28,6 @@ Section 1 explains the code structure and Section 2 provides a detailed guide on
 * [simulation_complex_setting.R]: conduct simulations under complex generative model and evaluate the performance of the estimators.
   
 * [simulation_simple_setting.R]: conduct simulations under simple generative model and evaluate the performance of the estimators.
-
-* [simulation_plots.R]: generate plots that display consistency and asymptotic results.
 
 
 ## 2. Results in Paper and Corresponding Code
